@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="com.kos.finalproject.fp.dao.FpMemDAO" >
+
+<select id="loginCheck" resultType="fpmemvo" parameterType="fpmemvo">
+	SELECT
+			A.MID		MID
+		   ,A.MPW		MPW
+	FROM	FMEMBER_TABLE A
+	WHERE A.DELETEYN = 'Y'
+	AND A.MID = #{mid, jdbcType = VARCHAR}
+	AND A.MPW = #{mpw, jdbcType = VARCHAR}
+</select>
+
+<update id="memUpdate" parameterType="fpmemvo">
+
+	UPDATE 	FMEMBER_TABLE
+	SET 	
+			 MPW = #{mpw}
+			,MNAME = #{mname}
+			,UPDATEDATE = SYSDATE
+	WHERE 	DELETEYN = 'Y' 
+	AND 	MID = #{mid}
+	
+</update>
+
+<update id="memDelete" parameterType="fpmemvo" >
+
+	UPDATE 	FMEMBER_TABLE 
+		SET 	DELETEYN = 'N'
+			   ,UPDATEDATE = SYSDATE		
+		WHERE MID = #{mid} 	AND MPW= #{mpw} AND MNAME=#{mname} 
+</update>
+
+<select id="idCheck" resultType="fpmemvo" parameterType="fpmemvo">
+	SELECT
+			A.MID MID
+	FROM    FMEMBER_TABLE A
+	WHERE   A.DELETEYN = 'Y'
+	AND		A.MID = #{mid}
+</select>
+
+
+<insert id="fpMemInsert" parameterType="fpmemvo">
+	INSERT INTO FMEMBER_TABLE 
+							 (  MNUM
+							  , MID
+							  , MPW
+							  , MNAME
+							  , DELETEYN
+							  , INSERTDATE
+							  , UPDATEDATE)
+					   VALUES
+					   		( (SELECT NVL(MAX(A.KNUM), 0) + 1 AS CHABUN FROM MEMBER_TABLE A)
+					   		  ,#{mid}
+					   		  ,#{mpw}
+					   		  ,#{mname}
+					   		  ,'Y'
+					   		  ,SYSDATE
+					   		  ,SYSDATE
+					   		)
+</insert>
+
+
+</mapper>      
