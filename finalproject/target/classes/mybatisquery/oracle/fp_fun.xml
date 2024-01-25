@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+          "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+          
+<mapper namespace="com.kos.finalproject.funiture.dao.FpFunDAO" >
+
+<select id="funiture" resultType="fpfunvo" parameterType="fpfunvo">
+   SELECT * FROM (
+      SELECT    A.FNUM       FNUM
+             ,A.FNAME    FNAME
+             ,A.FPRICE	FPRICE
+             ,A.FMOOD	FMOOD
+             ,A.DELETEYN      DELETEYN
+             <!--  ? : 페이지 사이즈 : pageSize  -->
+             ,CEIL(ROW_NUMBER() OVER(ORDER BY A.FNUM)/ #{pageSize} ) pageSize      
+            ,COUNT(A.FNUM) OVER() AS totalCount        
+      FROM    FUNITURE_TABLE A
+      WHERE    A.DELETEYN = 'Y' 
+      ORDER BY 1 DESC 
+       <!--  ? : 현재 페이지 : curPage -->
+   ) WHERE pageSize = #{curPage}
+</select>
+   
+
+<insert id="fpInsert" parameterType="fpfunvo" >
+	INSERT INTO FKART_TABLE (FNUM, FNAME, FMOOD ,FPRICE,DELETEYN)
+				VALUES(
+						(SELECT NVL(MAX(A.FNUM), 0) + 1 AS CHABUN FROM FKART_TABLE A),
+						#{fname},						
+						#{fmood},
+						#{fprice},
+						'Y'
+					)
+</insert>
+
+
+
+<select id = "kartListAll" parameterType = "fpfunvo" resultType="fpfunvo">
+
+SELECT 			A.FNUM 			FNUM
+		       ,A.FNAME 		FNAME
+		       ,A.FMOOD			FMOOD
+		       ,A.FPRICE 		FPRICE
+		       ,A.DELETEYN 	DELETEYN
+		       	  
+		FROM 	FKART_TABLE A
+		WHERE 	A.DELETEYN = 'Y'
+    <!--AND 	A.KMNUM = #{kmnum}--> 	
+		ORDER BY 1 DESC  
+
+	
+</select>
+
+
+
+<update id="KartDelete" parameterType="fpfunvo">
+
+		UPDATE FKART_TABLE
+		SET DELETEYN = 'N'
+		WHERE FNUM = #{fnum}
+
+</update>
+
+
+<update id="KartDeleteArray" parameterType="fpfunvo" >
+	<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;"> 
+		UPDATE 	FKART_TABLE 
+		SET 	DELETEYN = 'N'		
+		WHERE FNUM = #{item.fnum}
+	</foreach>
+</update>
+
+</mapper> 

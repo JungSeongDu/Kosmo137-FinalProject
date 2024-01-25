@@ -8,12 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,7 +40,8 @@ public class FpMemController{
 	      return"main/fpLoginForm";
 	   }
 	   
-	 //로그인
+	 /*
+	   //로그인
 	   @RequestMapping(value = "login",method=RequestMethod.POST)
 	   //@GetMapping("login" )
 	   public String login(HttpServletResponse response, HttpServletRequest req, FpMemVO fvo, Model model) {
@@ -57,10 +60,32 @@ public class FpMemController{
 	         model.addAttribute("listLogin", listLogin);
 	         
 	         
-	         return "main/loginSuccess";
+	         return "redirect:http://192.168.0.2:5011/success";
 	      }   
 	      return "main/fpLoginForm";
 	   }
+	   
+	   */
+	   
+	   @CrossOrigin(origins = "http://192.168.0.2:5011") // 허용할 오리진을 명시
+	    @RequestMapping(value = "login", method = RequestMethod.POST)
+	    public String login(HttpServletResponse response, HttpServletRequest req, FpMemVO fvo, Model model) {
+	        // Your existing code
+		   	  logger.info("login() 함수 진입 >>> : ");
+		      logger.info("login() 함수 진입 >>> : " + fvo.getMid());
+		      logger.info("login() 함수 진입 >>> : " + fvo.getMpw());
+		      String mid = fvo.getMid();
+		      String mpw = fvo.getMpw();	
+		   
+	        List<FpMemVO> listLogin = fpMemService.loginCheck(fvo);
+	        if (listLogin.size() == 1) {
+	            model.addAttribute("listLogin", listLogin);
+
+	            return "redirect:http://192.168.0.2:5011/success/"+mid;
+	        }
+	        return "main/fpLoginForm";
+	    }
+	   
 	   
 	   
 	// 로그 아웃   
@@ -160,5 +185,42 @@ public class FpMemController{
 	      return msg;
 	   }
 	   
+	   //검색 기능
+	   @RequestMapping(value = "moodSelectMain", method = RequestMethod.GET)
+	   public String moodSelectMain(@ModelAttribute FpMemVO fvo, Model model) {
+	       logger.info(" getSearchvalue  >>> : " + fvo.getSearchvalue());
+	       
+	       List<FpMemVO> moodSelectMain = fpMemService.moodSelectMain(fvo);
+	       int nCnt = moodSelectMain.size();
+	       
+	       String searchvalue = fvo.getSearchvalue();
+	       
+	       logger.info(" moodSelectMain nCnt >>> : " + nCnt);
+	       logger.info(" moodSelectMain >>> : " + searchvalue);
+
+	       if (nCnt > 0 && searchvalue != null) {
+	           logger.info(" moodSelectMain >>> : " + moodSelectMain);
+	           model.addAttribute("searchList", moodSelectMain);
+
+	           // 검색 조건에 따라 동적으로 페이지 결정
+	           if ("MODERN".equals(searchvalue.toUpperCase())) {
+	        	   logger.info(" searchvalue >>> : " + searchvalue.toUpperCase());
+	               return "search/modern";
+	           } else if ("UNIQUE".equals(searchvalue.toUpperCase())) {
+	               return "search/unique";
+	           } else if ("VINTAGE".equals(searchvalue.toUpperCase())) {
+	               return "search/vintage";
+	           } else if ("FRENCH_PROVANCE".equals(searchvalue.toUpperCase())) {
+	               return "search/french_provance";
+	           } else if ("LOVELY_ROMANTIC".equals(searchvalue.toUpperCase())) {
+	               return "search/lovely_romantic";
+	           } else if ("INDUSTRIAL".equals(searchvalue.toUpperCase())) {
+	               return "search/INDUSTRIAL";
+	           }
+	     	           
+	       }
+
+	       return "main/fail";
+	   }
 	
 }

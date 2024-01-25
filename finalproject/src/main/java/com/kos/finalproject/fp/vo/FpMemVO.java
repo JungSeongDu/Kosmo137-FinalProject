@@ -9,12 +9,15 @@ public class FpMemVO {
 		String updatedate;
 		String deleteyn;
 
+		
+		//검색기기능
+		String searchvalue;
 
 public FpMemVO() {
 	
 }
 
-public FpMemVO(String mnum, String mname, String mid, String mpw, String insertdate, String updatedate, String deleteyn) {
+public FpMemVO(String mnum, String mname, String mid, String mpw, String insertdate, String updatedate, String deleteyn, String searchvalue) {
 	super();
 	
 	this.mnum = mnum;
@@ -24,7 +27,19 @@ public FpMemVO(String mnum, String mname, String mid, String mpw, String insertd
 	this.insertdate = insertdate;
 	this.updatedate = updatedate;
 	this.deleteyn = deleteyn;
+	this.searchvalue = searchvalue;
 }
+
+//검색=================================
+public String getSearchvalue() {
+	return searchvalue;
+}
+
+public void setSearchvalue(String searchvalue) {
+	this.searchvalue = searchvalue;
+}
+//====================================
+
 
 public String getMnum() {
 	return mnum;

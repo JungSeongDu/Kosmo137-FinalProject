@@ -59,4 +59,12 @@ public class FpMemDAOImpl implements FpMemDAO {
 		logger.info("  dao.fpMemInsert >>> : ");
 		return (Integer)sqlSession.openSession().insert("fpMemInsert", fvo);
 	}
+	
+	
+	//메인페이지 검색기능
+		@Override
+		public List<FpMemVO> moodSelectMain(FpMemVO fvo) {
+			// TODO Auto-generated method stub
+			return sqlSession.openSession().selectList("moodSelectMain", fvo);
+		}
 }

@@ -58,4 +58,15 @@ public class FpMemServiceImpl implements FpMemService {
 		logger.info("  service.fpMemInsert >>> : ");
 		return fpMemDAO.fpMemInsert(fvo);
 	}
+	
+	//검색
+	@Override
+	public List<FpMemVO> moodSelectMain(FpMemVO fvo) {
+		// TODO Auto-generated method stub
+		logger.info("moodSelectMain 함수 진입 >>> : ");
+		
+		return fpMemDAO.moodSelectMain(fvo);
+	}
+	
+	
 }

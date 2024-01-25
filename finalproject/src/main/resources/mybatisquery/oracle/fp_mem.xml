@@ -53,7 +53,7 @@
 							  , INSERTDATE
 							  , UPDATEDATE)
 					   VALUES
-					   		( (SELECT NVL(MAX(A.KNUM), 0) + 1 AS CHABUN FROM MEMBER_TABLE A)
+					   		( (SELECT NVL(MAX(A.MNUM), 0) + 1 AS CHABUN FROM FMEMBER_TABLE A)
 					   		  ,#{mid}
 					   		  ,#{mpw}
 					   		  ,#{mname}
@@ -62,6 +62,18 @@
 					   		  ,SYSDATE
 					   		)
 </insert>
+
+
+<!-- 검색 -->
+<select id="moodSelectMain" resultType="fpmemvo" parameterType="fpmemvO">
+    SELECT 
+        *
+    FROM MOOD
+    <if test="searchvalue != null">
+        WHERE MOOD LIKE '%' || #{searchvalue, jdbcType=VARCHAR} || '%'
+    </if>
+</select>
+
 
 
 </mapper>      

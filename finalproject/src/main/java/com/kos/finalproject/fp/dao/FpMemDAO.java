@@ -12,4 +12,6 @@ public interface FpMemDAO {
 	public int memDelete(FpMemVO fvo);					//회원 탈퇴
 	public List<FpMemVO> idCheck(FpMemVO fvo);				//아이디 체크
 	public int fpMemInsert(FpMemVO fvo);					//회원가입
+	
+	public List<FpMemVO> moodSelectMain(FpMemVO fvo);		//검색
 }

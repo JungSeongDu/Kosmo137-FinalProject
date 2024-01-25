@@ -14,5 +14,6 @@
  -->
 <a href="fpLoginForm">로그인 폼</a>
 <a href="fpInsertForm">회원가입 폼</a>
+<a href="funiture.h">가구 구매</a>
 </body>
 </html>

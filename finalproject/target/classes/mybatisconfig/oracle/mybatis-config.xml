@@ -4,7 +4,8 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="com.kos.finalproject.fp.vo.FpMemVO" alias="fpmemvo"/>	
+		<typeAlias type="com.kos.finalproject.fp.vo.FpMemVO" alias="fpmemvo"/>
+		<typeAlias type="com.kos.finalproject.funiture.vo.FpFunVO" alias="fpfunvo"/>	
 		
 	</typeAliases>
 </configuration>
