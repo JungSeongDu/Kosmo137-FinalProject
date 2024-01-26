@@ -139,10 +139,10 @@ table {
 <tbody>
 <%
 String Knum="";
-String Fname="";
-String Fprice="";
-String Fmood = "";
-String Fpricesum="";
+String Kname="";
+String Kprice="";
+String Kmood = "";
+String Kpricesum="";
 int sum = 0;
 String sumV = "";
 
@@ -164,8 +164,8 @@ if(obj == null){
 		for(int i=0; i<nCnt; i++){
 			
 		FpFunVO fvo = list.get(i);
-	    Fprice = NumUtil.comma(fvo.getFprice());
-		sum += Integer.parseInt(fvo.getFprice());
+	    Kprice = NumUtil.comma(fvo.getKprice());
+		sum += Integer.parseInt(fvo.getKprice());
 
 %>
 
@@ -175,16 +175,16 @@ if(obj == null){
 <input type="hidden" name="fnum" id="fnum" value=<%= fvo.getKnum() %> >
 <td align="center" class="tt"><%= fvo.getKnum() %></td>
 
-<input type="hidden" name="fname" id="fname" value=<%= fvo.getFname() %> >
-<td align="center" class="tt"><%= fvo.getFname() %></td>
+<input type="hidden" name="fname" id="fname" value=<%= fvo.getKname() %> >
+<td align="center" class="tt"><%= fvo.getKname() %></td>
 
 
-<input type="hidden" name="fmood" id="fmood" value=<%= fvo.getFmood() %> >
-<td align="center" class="tt"><%= fvo.getFmood() %></td>
+<input type="hidden" name="fmood" id="fmood" value=<%= fvo.getKmood() %> >
+<td align="center" class="tt"><%= fvo.getKmood() %></td>
 
 
-<input type="hidden" name="fprice" id="fprice" value=<%= fvo.getFprice() %> >
-<td align="center" class="tt"> <%= Fprice %>  </td>
+<input type="hidden" name="fprice" id="fprice" value=<%= fvo.getKprice() %> >
+<td align="center" class="tt"> <%= Kprice %>  </td>
 <td class="tt" align="center">		
 		<button type="button" class="delBtn" name="delBtn" id="delBtn" value=<%= fvo.getKnum() %> >삭제</button><br>
 	</td>	

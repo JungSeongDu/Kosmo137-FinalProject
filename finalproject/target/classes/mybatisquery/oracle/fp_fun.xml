@@ -24,7 +24,7 @@
    
 
 <insert id="fpInsert" parameterType="fpfunvo" >
-	INSERT INTO FKART_TABLE (KNUM, FNAME, FMOOD ,FPRICE,DELETEYN)
+	INSERT INTO FKART_TABLE (KNUM, KNAME, KMOOD ,KPRICE,DELETEYN)
 				VALUES(
 						(SELECT NVL(MAX(A.KNUM), 0) + 1 AS CHABUN FROM FKART_TABLE A),
 						#{fname},						
@@ -39,9 +39,9 @@
 <select id = "kartListAll" parameterType = "fpfunvo" resultType="fpfunvo">
 
 SELECT 			A.KNUM 			KNUM
-		       ,A.FNAME 		FNAME
-		       ,A.FMOOD			FMOOD
-		       ,A.FPRICE 		FPRICE
+		       ,A.KNAME 		KNAME
+		       ,A.KMOOD			KMOOD
+		       ,A.KPRICE 		KPRICE
 		       ,A.DELETEYN 	DELETEYN
 		       	  
 		FROM 	FKART_TABLE A
