@@ -14,6 +14,7 @@ public class FpFunVO {
 	String kname;
 	String kprice;
 	String kmood;
+	String kdeletyn;
 	
 	
 	//패이징
@@ -29,7 +30,7 @@ public class FpFunVO {
 	 
 	 public FpFunVO(String fnum, String fname,String fprice, String fmood,String deleteyn,
 			 		String pageSize,String groupSize,String curPage, String totalCount, String ffile, 
-			 		String knum, String kname, String kprice, String kmood) {
+			 		String knum, String kname, String kprice, String kmood, String kdeletyn) {
 			super();
 			
 			this.fnum = fnum;
@@ -50,6 +51,7 @@ public class FpFunVO {
 			this.kname = kname;
 			this.kprice = kprice;
 			this.kmood = kmood;
+			this.kdeletyn = kdeletyn;
 		}
 
 
@@ -190,6 +192,16 @@ public class FpFunVO {
 
 	public void setKmood(String kmood) {
 		this.kmood = kmood;
+	}
+
+
+	public String getKdeletyn() {
+		return kdeletyn;
+	}
+
+
+	public void setKdeletyn(String kdeletyn) {
+		this.kdeletyn = kdeletyn;
 	}
 	 
 }

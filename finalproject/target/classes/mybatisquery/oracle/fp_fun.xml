@@ -24,7 +24,7 @@
    
 
 <insert id="fpInsert" parameterType="fpfunvo" >
-	INSERT INTO FKART_TABLE (KNUM, KNAME, KMOOD ,KPRICE,DELETEYN)
+	INSERT INTO FKART_TABLE (KNUM, KNAME, KMOOD ,KPRICE,KDELETEYN)
 				VALUES(
 						(SELECT NVL(MAX(A.KNUM), 0) + 1 AS CHABUN FROM FKART_TABLE A),
 						#{fname},						
@@ -42,10 +42,10 @@ SELECT 			A.KNUM 			KNUM
 		       ,A.KNAME 		KNAME
 		       ,A.KMOOD			KMOOD
 		       ,A.KPRICE 		KPRICE
-		       ,A.DELETEYN 	DELETEYN
+		       ,A.KDELETEYN 	KDELETEYN
 		       	  
 		FROM 	FKART_TABLE A
-		WHERE 	A.DELETEYN = 'Y'
+		WHERE 	A.KDELETEYN = 'Y'
     <!--AND 	A.KMNUM = #{kmnum}--> 	
 		ORDER BY 1 DESC  
 
@@ -57,7 +57,7 @@ SELECT 			A.KNUM 			KNUM
 <update id="KartDelete" parameterType="fpfunvo">
 
 		UPDATE FKART_TABLE
-		SET DELETEYN = 'N'
+		SET KDELETEYN = 'N'
 		WHERE KNUM = #{fnum}
 
 </update>
@@ -66,7 +66,7 @@ SELECT 			A.KNUM 			KNUM
 <update id="KartDeleteArray" parameterType="fpfunvo" >
 	<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;"> 
 		UPDATE 	FKART_TABLE 
-		SET 	DELETEYN = 'N'		
+		SET 	KDELETEYN = 'N'		
 		WHERE KNUM = #{item.fnum}
 	</foreach>
 </update>
