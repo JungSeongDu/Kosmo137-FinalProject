@@ -8,7 +8,7 @@ public class FpFunVO {
 	String fprice;
 	String fmood;
 	String deletyn;
-	//String lfile;
+	String ffile;
 	
 	
 	//패이징
@@ -23,7 +23,7 @@ public class FpFunVO {
 	 
 	 
 	 public FpFunVO(String fnum, String fname,String fprice, String fmood,String deleteyn,
-			 		String pageSize,String groupSize,String curPage, String totalCount) {
+			 		String pageSize,String groupSize,String curPage, String totalCount, String ffile) {
 			super();
 			
 			this.fnum = fnum;
@@ -35,6 +35,7 @@ public class FpFunVO {
 			this.groupSize = groupSize;
 			this.curPage = curPage;
 			this.totalCount = totalCount;
+			this.ffile = ffile;
 		}
 
 
@@ -125,6 +126,16 @@ public class FpFunVO {
 
 	public void setTotalCount(String totalCount) {
 		this.totalCount = totalCount;
+	}
+
+
+	public String getFfile() {
+		return ffile;
+	}
+
+
+	public void setFfile(String ffile) {
+		this.ffile = ffile;
 	}
 	 
 }

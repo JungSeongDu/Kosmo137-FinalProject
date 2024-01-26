@@ -6,11 +6,12 @@
 
 <select id="funiture" resultType="fpfunvo" parameterType="fpfunvo">
    SELECT * FROM (
-      SELECT    A.FNUM       FNUM
-             ,A.FNAME    FNAME
-             ,A.FPRICE	FPRICE
-             ,A.FMOOD	FMOOD
-             ,A.DELETEYN      DELETEYN
+      SELECT    A.FNUM       		FNUM
+               ,A.FNAME    			FNAME
+               ,A.FPRICE			FPRICE
+               ,A.FMOOD				FMOOD
+               ,A.FFILE				FFILE
+               ,A.DELETEYN      	DELETEYN              
              <!--  ? : 페이지 사이즈 : pageSize  -->
              ,CEIL(ROW_NUMBER() OVER(ORDER BY A.FNUM)/ #{pageSize} ) pageSize      
             ,COUNT(A.FNUM) OVER() AS totalCount        

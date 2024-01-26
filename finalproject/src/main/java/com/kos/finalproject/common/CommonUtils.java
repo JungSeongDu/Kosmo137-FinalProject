@@ -6,7 +6,7 @@ public abstract class CommonUtils {
 	public static final int FUNITURE_PAGE_SIZE = 3;
 	public static final int FUNITURE_GROUP_SIZE = 3;
 	public static final int FUNITURE_CUR_PAGE = 1;
-	public static final int FUNITURE_TOTAL_COUNT = 0;
+	public static final int FUNITURE_TOTAL_COUNT = 3;
 	
 
 }

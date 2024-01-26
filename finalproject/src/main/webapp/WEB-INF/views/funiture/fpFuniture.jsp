@@ -9,7 +9,7 @@
 <% request.setCharacterEncoding("UTF-8");%> 
 <%   
    Logger logger = LogManager.getLogger(this.getClass());
-   logger.info("kosBoardSelectAll.jsp 페이지 >>> : ");
+   logger.info("fpFuniture.jsp 페이지 >>> : ");
    
    //페이징 변수 세팅
       int pageSize = 0;
@@ -118,6 +118,8 @@ for(int i=0; i<nCnt; i++){
 <tbody>
 <form name="kart" id="kart">
 <tr>      
+	
+  <td style="width: 200px;"><img src="<%= fvo.getFfile() %>" alt="이미지" style="max-width: 100%; height: auto;"></td>	
 	
   <td colspan='10' style="width: 100px;"><span style="font-size: 20px;">
    

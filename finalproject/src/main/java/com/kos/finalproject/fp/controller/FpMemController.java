@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,7 +34,7 @@ public class FpMemController{
 	
 	
 	//로그인폼
-	   @RequestMapping(value= "fpLoginForm", method = RequestMethod.GET)
+	   @GetMapping(value= "fpLoginForm")
 	   //@GetMapping("fpLoginForm")
 	   public String loginForm() {
 	      logger.info("FpLoginController loginForm() 함수 진입 >>> : ");
@@ -68,7 +69,7 @@ public class FpMemController{
 	   */
 	   
 	   @CrossOrigin(origins = "http://192.168.0.2:5011") // 허용할 오리진을 명시
-	    @RequestMapping(value = "login", method = RequestMethod.POST)
+	    @PostMapping(value = "login")
 	    public String login(HttpServletResponse response, HttpServletRequest req, FpMemVO fvo, Model model) {
 	        // Your existing code
 		   	  logger.info("login() 함수 진입 >>> : ");
@@ -89,7 +90,7 @@ public class FpMemController{
 	   
 	   
 	// 로그 아웃   
-	   @RequestMapping(value="logout", method=RequestMethod.GET)
+	   @GetMapping(value="logout")
 	   public String logout() {   
 	      logger.info("OsLoginController logout() 함수 진입 >>> : ");      
 	         
@@ -98,7 +99,7 @@ public class FpMemController{
 	   
 	   
 	// 업데이트 폼
-	   @RequestMapping(value="fpUpdateForm", method=RequestMethod.GET)
+	   @GetMapping(value="fpUpdateForm")
 	   public String loginform() {   
 	      logger.info("OsLoginController fpUpdateForm() 함수 진입 >>> : ");      
 	         
@@ -107,7 +108,7 @@ public class FpMemController{
 	   
 	   
 	//회원정보 수정
-	   @RequestMapping(value="memUpdate", method=RequestMethod.GET)
+	   @GetMapping(value="memUpdate")
        public String osMypageUpdate(HttpServletRequest req, FpMemVO fvo, Model model) {
           
           logger.info("memUpdate >>> :");
@@ -125,7 +126,7 @@ public class FpMemController{
 	   
 	   
 	//회원 탈퇴
-	   @RequestMapping(value = "memDelete", method=RequestMethod.GET)
+	   @GetMapping(value = "memDelete")
        public String osMypageDelete(FpMemVO fvo, Model model) {
           logger.info("memDelete >>> :");
           logger.info("memDelete 함수 진입 fvo.getMid() >>> : " + fvo.getMid());
@@ -140,7 +141,7 @@ public class FpMemController{
        }  
 	   
 	 //회원가입 폼
-	   @RequestMapping(value= "fpInsertForm", method = RequestMethod.GET)
+	   @GetMapping(value= "fpInsertForm")
 	   //@GetMapping("fpLoginForm")
 	   public String fpInsertForm() {
 	      logger.info("FpLoginController fpInsertForm() 함수 진입 >>> : ");
@@ -149,7 +150,7 @@ public class FpMemController{
 	   
 	   
 	 //회원가입
-	   @RequestMapping(value="fpMemInsert", method=RequestMethod.GET)
+	   @GetMapping(value="fpMemInsert")
 	   public String osMemInsert(FpMemVO fvo, Model model) {
 	      logger.info(" osMemInsert 함수 진입 >>> : ");
 	      logger.info(" getMid() >>> : " + fvo.getMid());
@@ -169,7 +170,7 @@ public class FpMemController{
 	}
 	   
 	 //아이디중복체크
-	   @RequestMapping(value="idCheck", method=RequestMethod.POST)
+	   @PostMapping(value="idCheck")
 	   @ResponseBody
 	   public Object idCheck(FpMemVO fvo) {
 	      logger.info("idCheck 함수 진입 >>> :");      
@@ -186,7 +187,7 @@ public class FpMemController{
 	   }
 	   
 	   //검색 기능
-	   @RequestMapping(value = "moodSelectMain", method = RequestMethod.GET)
+	   @GetMapping(value = "moodSelectMain")
 	   public String moodSelectMain(@ModelAttribute FpMemVO fvo, Model model) {
 	       logger.info(" getSearchvalue  >>> : " + fvo.getSearchvalue());
 	       

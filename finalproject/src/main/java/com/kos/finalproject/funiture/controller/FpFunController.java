@@ -48,7 +48,7 @@ public class FpFunController {
 		   
 	
 	//가구조회
-    @RequestMapping("funiture")
+    @GetMapping("funiture")
     public String osLectureSelectM(FpFunVO fvo, Model model){
        logger.info("funiture 컨트롤러 진입>>> : ");
        logger.info("Received mid: ");
@@ -102,7 +102,7 @@ public class FpFunController {
  }
     
   //카트 목록
-  	@RequestMapping(value="kartSelectAll", method=RequestMethod.GET)
+  	@GetMapping(value="kartSelectAll")
   	public String kartSelectAll(FpFunVO fvo, Model model) {
   		logger.info("kartSelectAll 함수 진입 >>> : ");
   		
@@ -119,7 +119,7 @@ public class FpFunController {
   	}
   	
   	//장바구니 한건 삭제
-  	@RequestMapping(value="KartDelete", method=RequestMethod.GET)
+  	@GetMapping(value="KartDelete")
   	public String osKartDelete(HttpServletRequest req, FpFunVO fvo, Model model) {
   		
   		logger.info("osKartDelete 함수 진입 >>> : ");
@@ -136,7 +136,7 @@ public class FpFunController {
   	
   	
   //선택삭제 전체 삭제
-  	@RequestMapping(value="KartDeleteArray",method=RequestMethod.GET)
+  	@GetMapping(value="KartDeleteArray")
   	public String KartDeleteArray(HttpServletRequest req,FpFunVO fvo, Model model) {
   		logger.info("KartDeleteArray 함수 진입 >>> : ");
   		
