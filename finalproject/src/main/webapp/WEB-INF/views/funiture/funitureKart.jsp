@@ -36,11 +36,12 @@ $(document).ready(function(){
 	});
 	
 	$(document).on("click","#buyBtn",function(){
-		$('#classList').attr({
-			'action' : "osKartUpdate.h",
-			'method' : 'POST',
-			'enctype' : 'application/x-www-form-urlencoded'
-		}).submit();
+		//$('#classList').attr({
+		//	'action' : "osKartUpdate.h",
+		//	'method' : 'POST',
+		//	'enctype' : 'application/x-www-form-urlencoded'
+		//}).submit();
+		alert("결제!!!! >>> : " );
 	});
 	
 	$(document).on('click','.delBtn',function(){
@@ -86,6 +87,10 @@ $(document).ready(function(){
 	$(document).on('click','#mainBtn',function(){
 		location.href="fpLoginForm.h";
 	});
+	
+	
+	
+	
 	
 });
 
