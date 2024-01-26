@@ -24,9 +24,9 @@
    
 
 <insert id="fpInsert" parameterType="fpfunvo" >
-	INSERT INTO FKART_TABLE (FNUM, FNAME, FMOOD ,FPRICE,DELETEYN)
+	INSERT INTO FKART_TABLE (KNUM, FNAME, FMOOD ,FPRICE,DELETEYN)
 				VALUES(
-						(SELECT NVL(MAX(A.FNUM), 0) + 1 AS CHABUN FROM FKART_TABLE A),
+						(SELECT NVL(MAX(A.KNUM), 0) + 1 AS CHABUN FROM FKART_TABLE A),
 						#{fname},						
 						#{fmood},
 						#{fprice},
@@ -38,7 +38,7 @@
 
 <select id = "kartListAll" parameterType = "fpfunvo" resultType="fpfunvo">
 
-SELECT 			A.FNUM 			FNUM
+SELECT 			A.KNUM 			KNUM
 		       ,A.FNAME 		FNAME
 		       ,A.FMOOD			FMOOD
 		       ,A.FPRICE 		FPRICE
@@ -58,7 +58,7 @@ SELECT 			A.FNUM 			FNUM
 
 		UPDATE FKART_TABLE
 		SET DELETEYN = 'N'
-		WHERE FNUM = #{fnum}
+		WHERE KNUM = #{fnum}
 
 </update>
 
@@ -67,7 +67,7 @@ SELECT 			A.FNUM 			FNUM
 	<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;"> 
 		UPDATE 	FKART_TABLE 
 		SET 	DELETEYN = 'N'		
-		WHERE FNUM = #{item.fnum}
+		WHERE KNUM = #{item.fnum}
 	</foreach>
 </update>
 

@@ -138,7 +138,7 @@ table {
 
 <tbody>
 <%
-String Fnum="";
+String Knum="";
 String Fname="";
 String Fprice="";
 String Fmood = "";
@@ -170,10 +170,10 @@ if(obj == null){
 %>
 
 <tr>
-<td align="center"> <input type="checkbox" name="knum" id="knum" class="knum"  value=<%= fvo.getFnum() %> > </td>
+<td align="center"> <input type="checkbox" name="knum" id="knum" class="knum"  value=<%= fvo.getKnum() %> > </td>
 
-<input type="hidden" name="fnum" id="fnum" value=<%= fvo.getFnum() %> >
-<td align="center" class="tt"><%= fvo.getFnum() %></td>
+<input type="hidden" name="fnum" id="fnum" value=<%= fvo.getKnum() %> >
+<td align="center" class="tt"><%= fvo.getKnum() %></td>
 
 <input type="hidden" name="fname" id="fname" value=<%= fvo.getFname() %> >
 <td align="center" class="tt"><%= fvo.getFname() %></td>
@@ -186,7 +186,7 @@ if(obj == null){
 <input type="hidden" name="fprice" id="fprice" value=<%= fvo.getFprice() %> >
 <td align="center" class="tt"> <%= Fprice %>  </td>
 <td class="tt" align="center">		
-		<button type="button" class="delBtn" name="delBtn" id="delBtn" value=<%= fvo.getFnum() %> >삭제</button><br>
+		<button type="button" class="delBtn" name="delBtn" id="delBtn" value=<%= fvo.getKnum() %> >삭제</button><br>
 	</td>	
 </tr>
 <% 
