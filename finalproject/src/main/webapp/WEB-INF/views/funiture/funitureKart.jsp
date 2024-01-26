@@ -28,9 +28,9 @@ $(document).ready(function(){
 	
 	$(document).on("click","#chek",function(){
 		if($(this).prop('checked')){
-			$('.fnum').prop('checked',true);
+			$('.knum').prop('checked',true);
 		}else{
-			$('.fnum').prop('checked',false);
+			$('.knum').prop('checked',false);
 		}
 		
 	});
