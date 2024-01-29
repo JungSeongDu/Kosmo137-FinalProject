@@ -110,9 +110,9 @@ public class FpFunController {
   	
   	//장바구니 한건 삭제
   	@GetMapping(value="KartDelete")
-  	public String osKartDelete(@RequestParam(required = false) String mid,HttpServletRequest req, FpFunVO fvo, Model model) {
+  	public String KartDelete(@RequestParam(required = false) String mid,HttpServletRequest req, FpFunVO fvo, Model model) {
   		
-  		logger.info("osKartDelete 함수 진입 >>> : ");
+  		logger.info("KartDelete 함수 진입 >>> : ");
   		logger.info("Received mid: " + mid);
   		
   		fvo.setFnum(req.getParameter("fnumV"));
@@ -150,5 +150,21 @@ public class FpFunController {
   		model.addAttribute("mid", mid); // mid 값을 모델에 추가
   		return "funiture/reKartDelete";
   	}
+  	
+  	
+  //주문
+  	@GetMapping(value="Kartorder")
+  	public String Kartorder(@RequestParam(required = false) String mid,@RequestParam(required = false) String sum,HttpServletRequest req, FpFunVO fvo, Model model) {
+  		
+  		logger.info("Kartorder 함수 진입 >>> : ");
+  		logger.info("Received mid: " + mid);
+  		logger.info("Received sum: " + sum);
+  		
+  		
+  		model.addAttribute("mid", mid); // mid 값을 모델에 추가
+  		model.addAttribute("sum", sum); // mid 값을 모델에 추가
+  		return "funiture/funitureorder";
+  	}
+  	
   	
 }

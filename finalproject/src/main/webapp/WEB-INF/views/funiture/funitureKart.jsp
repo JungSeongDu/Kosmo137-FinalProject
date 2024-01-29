@@ -1,23 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.kos.finalproject.funiture.vo.FpFunVO" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.kos.finalproject.common.NumUtil" %>
 <%@ page import=" org.apache.log4j.LogManager" %>
 <%@ page import="org.apache.log4j.Logger" %>
-<% request.setCharacterEncoding("UTF-8");%>
+<%@ page import="java.io.*" %>
+<%@ page import=" java.io.InputStreamReader" %>
+<%@ page import=" java.net.HttpURLConnection" %>
+<%@ page import=" java.net.URL" %>
+<%@ page import=" java.net.URLEncoder" %>
+<%@ page import="org.json.simple.JSONObject" %>
+<%@ page import=" org.json.simple.parser.JSONParser" %>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import=" java.util.HashMap" %>
+<%@ page import=" java.util.Map" %>
+<%@ page import="java.security.InvalidKeyException" %>
+<%@ page import="java.security.NoSuchAlgorithmException" %>
+<%@ page import=" java.security.SignatureException" %>
+<%@ page import=" java.text.SimpleDateFormat" %>
+<%@ page import=" java.util.Date" %>
+<%@ page import=" java.util.Locale" %>
+<%@ page import=" java.util.TimeZone" %>
+<%@ page import=" java.util.UUID" %>
+
 <%
 	Logger logger = LogManager.getLogger(this.getClass());
 	logger.info("funitureKart.jsp 페이지 >>> : ");
 	
 	// mid 값 가져오기
     String midValue = (String)request.getAttribute("mid");
+	
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>osKartSelectAll</title>
+<title>KartSelectAll</title>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 <script type="text/javascript" src="/osProject/js/common.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script type="text/javascript">
@@ -34,14 +54,7 @@ $(document).ready(function(){
 		
 	});
 	
-	$(document).on("click","#buyBtn",function(){
-		//$('#classList').attr({
-		//	'action' : "osKartUpdate.h",
-		//	'method' : 'POST',
-		//	'enctype' : 'application/x-www-form-urlencoded'
-		//}).submit();
-		alert("결제!!!! >>> : " );
-	});
+	
 	
 	$(document).on('click','.delBtn',function(){
 		
@@ -89,7 +102,6 @@ $(document).ready(function(){
 	$(document).on('click','#mainBtn',function(){
 		 window.location.href = "http://192.168.0.2:5011/success/" + midValue;
 	});
-	
 	
 	
 	
@@ -186,17 +198,23 @@ if(obj == null){
 		 }// end of for
 } // end of else
 %>
+
+
 <tr>
-<td align = "right" colspan="4">총 결제 금액  <%= sum %>원</td>
-</tr>
-<tr>
-<td colspan="4" align="right">
+
+<td colspan="4" align="left">
 <input tpye="button" class="button" value="선택삭제" id= 'delsBtn' style="width:60px;">
 <input tpye="button" class="button" value="장바구니 비우기" id= 'delAllBtn' style="width:100px;">
-<input tpye="button" class="button" value="결제하기" id= "buyBtn" style="width:60px;">
 <input tpye="button" class="button" value="메인화면" id= "mainBtn" style="width:60px;">
 </td>
 </tr>
+
+<tr>
+<input type="hidden" name="sum" id="sum" value= <%= sum %> >
+<td  align = "right"  colspan="4"><a href="Kartorder.h?mid=<%= midValue %>&sum=<%= sum %>">결제 페이지로 이동</a></td>
+<td align = "right" colspan="3">총 금액  <%= sum %>원</td>
+</tr>
+
 </tbody>
 </table>
 </form>
