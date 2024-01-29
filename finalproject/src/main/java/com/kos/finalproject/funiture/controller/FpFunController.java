@@ -1,13 +1,10 @@
 package com.kos.finalproject.funiture.controller;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -17,10 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.kos.finalproject.common.CommonUtils;
 import com.kos.finalproject.fp.controller.FpMemController;
 import com.kos.finalproject.fp.service.FpMemService;
@@ -29,7 +27,6 @@ import com.kos.finalproject.funiture.vo.FpFunVO;
 
 @Controller
 public class FpFunController {
-
 		Logger logger = LogManager.getLogger(FpMemController.class);
 		   //서비스 연결
 		   @Autowired
@@ -42,87 +39,81 @@ public class FpFunController {
    public String loginForm() {
       logger.info("FpFunController loginForm() 함수 진입 >>> : ");
       return"main/fpLoginForm";
-      // http://localhost:8088/finalproject/funiture.h 
+      // http://localhost:8088/finalproject/funiture.h
    }
-   
-		   
+		  
 	
 	//가구조회
     @GetMapping("funiture")
-    public String osLectureSelectM(FpFunVO fvo, Model model){
+    public String funiture(@RequestParam(required = false) String mid, FpFunVO fvo, Model model){
        logger.info("funiture 컨트롤러 진입>>> : ");
-       logger.info("Received mid: ");
-       
+       logger.info("Received mid: " + mid);
        int pageSize = CommonUtils.FUNITURE_PAGE_SIZE;
        int groupSize = CommonUtils.FUNITURE_GROUP_SIZE;
        int curPage = CommonUtils.FUNITURE_CUR_PAGE;
        int totalCount = CommonUtils.FUNITURE_TOTAL_COUNT;
-       
        if (fvo.getCurPage() !=null){
           curPage = Integer.parseInt(fvo.getCurPage());
        }
-       
        fvo.setPageSize(String.valueOf(pageSize));
        fvo.setGroupSize(String.valueOf(groupSize));
        fvo.setCurPage(String.valueOf(curPage));
        fvo.setTotalCount(String.valueOf(totalCount));
-       
        logger.info("getPageSize() >>> : " + fvo.getPageSize());
        logger.info("getGroupSize() >>> : " + fvo.getGroupSize());
        logger.info("getCurPage() >>> : " + fvo.getCurPage());
        logger.info("getTotalCount() >>> : " + fvo.getTotalCount());
-       
-       
        List<FpFunVO> listAll = fpFunService.funiture(fvo);
-       
        logger.info("funiture listAll.size() >>> : " + listAll.size());
-       if (listAll.size() > 0) { 
-          model.addAttribute("pagingKBVO", fvo);      
+       if (listAll.size() > 0) {
+    	  model.addAttribute("mid", mid); // mid 값을 모델에 추가
+          model.addAttribute("pagingKBVO", fvo);
           model.addAttribute("listAll", listAll);
           return "funiture/fpFuniture";
-          
        } return "main/fail";
     }
 	
-    
-    //가구 장바구니 
+    //가구 장바구니
     @RequestMapping("fpInsert")
-    public String fpInsert(FpFunVO fvo, Model model){
+    public String fpInsert(@RequestParam(required = false) String mid, FpFunVO fvo, Model model){
        logger.info("fpInsert 컨트롤러 진입>>> : ");
        logger.info("fpInsert 컨트롤러 진입>>> : " + fvo.getFnum());
+       logger.info("Received mid: " + mid);
        int nCnt = fpFunService.fpInsert(fvo);
-       
-              if (nCnt > 0) { 
+              if (nCnt > 0) {
             	  logger.info("osKartInsert 함수 진입 nCnt >>> : " + nCnt);
             	  logger.info("잘 담겼음");
-            	  
+            	  model.addAttribute("mid", mid); // mid 값을 모델에 추가
+            	 
           return "funiture/returnFuniture";
-          
     } return "funiture/funitureKart";
  }
     
   //카트 목록
   	@GetMapping(value="kartSelectAll")
-  	public String kartSelectAll(FpFunVO fvo, Model model) {
+  	public String kartSelectAll(@RequestParam(required = false) String mid, FpFunVO fvo, Model model) {
   		logger.info("kartSelectAll 함수 진입 >>> : ");
-  		
+  		logger.info("Received mid: " + mid);
   		//okvo.setKnum("1234");
   		//logger.info("okv0.getKnum() >>> : ");
   		
   		List<FpFunVO> kartListAll = fpFunService.kartListAll(fvo);
   		if(kartListAll.size()>0) {
   			logger.info("OsKartController listAll.size() >>> : " + kartListAll.size());
+  			model.addAttribute("mid", mid); // mid 값을 모델에 추가
   			model.addAttribute("kartListAll",kartListAll);
   			return "funiture/funitureKart";
   		}
+  		model.addAttribute("mid", mid); // mid 값을 모델에 추가
   		return "funiture/reFunitureKart";
   	}
   	
   	//장바구니 한건 삭제
   	@GetMapping(value="KartDelete")
-  	public String osKartDelete(HttpServletRequest req, FpFunVO fvo, Model model) {
+  	public String osKartDelete(@RequestParam(required = false) String mid,HttpServletRequest req, FpFunVO fvo, Model model) {
   		
   		logger.info("osKartDelete 함수 진입 >>> : ");
+  		logger.info("Received mid: " + mid);
   		
   		fvo.setFnum(req.getParameter("fnumV"));
   		logger.info("KArtDelete 함수 진입 okvo.getFnum() >>> : " + fvo.getFnum());
@@ -130,15 +121,18 @@ public class FpFunController {
   		int nCnt = fpFunService.KartDelete(fvo);
   		if(nCnt > 0) {
   			logger.info("KartDelete 함수 진입 nCnt >>> : " + nCnt);
-  		}
-  		return "funiture/KartDelete";
+  			
+  	  	}
+  		model.addAttribute("mid", mid); // mid 값을 모델에 추가
+  		return "funiture/reKartDelete";
   	}
   	
   	
-  //선택삭제 전체 삭제
-  	@GetMapping(value="KartDeleteArray")
-  	public String KartDeleteArray(HttpServletRequest req,FpFunVO fvo, Model model) {
+    //선택삭제 전체 삭제
+  	@PostMapping(value="KartDeleteArray")
+  	public String KartDeleteArray(@RequestParam(required = false) String mid,HttpServletRequest req,FpFunVO fvo, Model model) {
   		logger.info("KartDeleteArray 함수 진입 >>> : ");
+  		logger.info("Received mid: " + mid);
   		
   		String fnumV[] = req.getParameterValues("knum");
   		ArrayList<FpFunVO> aList = new ArrayList<FpFunVO>();
@@ -153,8 +147,8 @@ public class FpFunController {
   		if (nCnt == -1) {
   			logger.info("osKartDeleteArray 함수 진입 nCnt >>> : " + nCnt);
   		}
-  		return "funiture/KartDelete";
+  		model.addAttribute("mid", mid); // mid 값을 모델에 추가
+  		return "funiture/reKartDelete";
   	}
   	
-    
 }
