@@ -99,7 +99,7 @@ if(obj == null){
 
 
 	<tr>
-		<td colspan="2" align="center">제품 등록</td>				
+		<td colspan="2" align="center">제품 정보수정</td>				
 	</tr>
 	
 	<input type="hidden" name="mid" id="mid" value="<%= midValue %>">

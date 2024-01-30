@@ -46,7 +46,7 @@ SELECT 			A.KNUM 			KNUM
 		       	  
 		FROM 	FKART_TABLE A
 		WHERE 	A.KDELETEYN = 'Y'
-    <!--AND 	A.KMNUM = #{kmnum}--> 	
+    
 		ORDER BY 1 DESC  
 
 	
@@ -102,9 +102,8 @@ SELECT 			A.FNUM 			FNUM
 		       	  
 		FROM 	FUNITURE_TABLE A
 		WHERE 	A.DELETEYN = 'Y' AND A.FNUM = #{fnum}
-    <!--AND 	A.KMNUM = #{kmnum}--> 	
+   	
 
-	
 </select>
 
 

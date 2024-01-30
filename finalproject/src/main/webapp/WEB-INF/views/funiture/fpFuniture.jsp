@@ -80,8 +80,31 @@
 	   
 	   
     //장바구니 등록
-      $(document).on('click','#selectone',function(){
-    	  $('#kart').attr({
+      $(document).on('click','#selectone0',function(){
+    	    	  
+    	  $('#kart0').attr({
+  			'action' : "fpInsert.h?mid=" + midValue,
+  			'method' : 'POST',
+  			'enctype' : 'application/x-www-form-urlencoded'
+  		}).submit();
+    	  alert("장바구니 등록 완료")
+      });
+    
+    //장바구니 등록
+      $(document).on('click','#selectone1',function(){
+    	    	  
+    	  $('#kart1').attr({
+  			'action' : "fpInsert.h?mid=" + midValue,
+  			'method' : 'POST',
+  			'enctype' : 'application/x-www-form-urlencoded'
+  		}).submit();
+    	  alert("장바구니 등록 완료")
+      });
+    
+    //장바구니 등록
+      $(document).on('click','#selectone2',function(){
+    	    	  
+    	  $('#kart2').attr({
   			'action' : "fpInsert.h?mid=" + midValue,
   			'method' : 'POST',
   			'enctype' : 'application/x-www-form-urlencoded'
@@ -90,9 +113,30 @@
       });
     
     
+    
     //제품수정
-      $(document).on('click','#updateOne',function(){
-    	  $('#kart').attr({
+      $(document).on('click','#updateOne0',function(){
+    	  $('#kart0').attr({
+  			'action' : "updateOne.h?mid=" + midValue,
+  			'method' : 'POST',
+  			'enctype' : 'application/x-www-form-urlencoded'
+  		}).submit();
+    	 
+      });
+    
+    //제품수정
+      $(document).on('click','#updateOne1',function(){
+    	  $('#kart1').attr({
+  			'action' : "updateOne.h?mid=" + midValue,
+  			'method' : 'POST',
+  			'enctype' : 'application/x-www-form-urlencoded'
+  		}).submit();
+    	 
+      });
+    
+    //제품수정
+      $(document).on('click','#updateOne2',function(){
+    	  $('#kart2').attr({
   			'action' : "updateOne.h?mid=" + midValue,
   			'method' : 'POST',
   			'enctype' : 'application/x-www-form-urlencoded'
@@ -110,48 +154,50 @@
 </script>
 </head>
 <body>
-<h1>Funiture All 페이지</h1>
-<form name="funitureall" id="funitureall">
+<h1>가구 페이지</h1>
+<!-- <form name="funitureall" id="funitureall"> -->
 <table align="center" style="width: 60%; cellpadding: 20px;">
 <thead>
 <tr>
    <th></th>
-   <th>   </th>
+   <th></th>
 </tr>
 </thead>
 <%
-for(int i=0; i<nCnt; i++){
-	FpFunVO fvo = list.get(i);
-   // 페이징 세팅
-   pageSize = Integer.parseInt(pagingKBVO.getPageSize());
-   groupSize = Integer.parseInt(pagingKBVO.getGroupSize());
-   curPage = Integer.parseInt(pagingKBVO.getCurPage());
-   totalCount = Integer.parseInt(fvo.getTotalCount());
+for (int i = 0; i < nCnt; i++) {
+    FpFunVO fvo = list.get(i);
+    // 페이징 세팅
+    pageSize = Integer.parseInt(pagingKBVO.getPageSize());
+    groupSize = Integer.parseInt(pagingKBVO.getGroupSize());
+    curPage = Integer.parseInt(pagingKBVO.getCurPage());
+    totalCount = Integer.parseInt(fvo.getTotalCount());
 %>
-<tbody>
-<form name="kart" id="kart">
-<tr>
-  
-  
-  <td style="width: 200px;"><img src="<%= fvo.getFfile() %>" alt="이미지" style="max-width: 100%; height: auto;"></td>	
-	
-  <td colspan='10' style="width: 100px;"><span style="font-size: 20px;">
-  
-  <input type="hidden" name="fnum" id="fnum" value="<%= fvo.getFnum() %>">
-   번호 :	<%= fvo.getFnum() %><br><br>
-   
-  <input type="hidden" name="fname" id="fname" value="<%= fvo.getFname() %>">
-   가구이름: <%= fvo.getFname() %><br><br>
-   
-  <input type="hidden" name="fmood" id="fmood" value="<%= fvo.getFmood() %>">
-    분위기: <%= fvo.getFmood() %><br><br>
-    
-  <input type="hidden" name="fprice" id="fprice" value="<%= fvo.getFprice() %>">
-    가격:  <%= fvo.getFprice() %>원<br><br>
-    
-  <input type="button" name="selectone" id="selectone" value="장바구니" style="width: 100px; height: 40px;">
-  <input type="button" name="updateOne" id="updateOne" value="제품정보 수정" style="width: 100px; height: 40px;">
-</tr>
+
+<!-- 각 반복 요소에 대해 개별적인 <form> 태그를 생성 -->
+<form name="kart<%= i %>" id="kart<%= i %>">
+  <tbody>
+    <tr>
+      <td style="width: 200px;"><img src="<%= fvo.getFfile() %>" alt="이미지" style="max-width: 100%; height: auto;"></td>
+
+      <td colspan='10' style="width: 100px;"><span style="font-size: 20px;">
+
+        <input type="hidden" name="fnum" id="fnum" value="<%= fvo.getFnum() %>">
+        번호 : <%= fvo.getFnum() %><br><br>
+
+        <input type="hidden" name="fname" id="fname" value="<%= fvo.getFname() %>">
+        가구이름: <%= fvo.getFname() %><br><br>
+
+        <input type="hidden" name="fmood" id="fmood" value="<%= fvo.getFmood() %>">
+        분위기: <%= fvo.getFmood() %><br><br>
+
+        <input type="hidden" name="fprice" id="fprice" value="<%= fvo.getFprice() %>">
+        가격: <%= fvo.getFprice() %>원<br><br>
+
+        <input type="button" name="selectone" id="selectone<%= i %>" value="장바구니" style="width: 100px; height: 40px;">
+        <input type="button" name="updateOne" id="updateOne<%= i %>" value="제품정보 수정/삭제" style="width: 100px; height: 40px;">
+      </td>
+    </tr>
+  </tbody>
 </form>
 <%
    }
@@ -165,7 +211,7 @@ if(true){
       	<jsp:include page="funiturePaging.jsp" flush="true">
          <jsp:param name="str" value=""/>
          <jsp:param name="url" value='<%= url %>'/>
-         <jsp:param name="pageSize" value="<%=pageSize%>"/>
+         <jsp:param name="pageSize" value="<%=pageSize%>"/> 
          <jsp:param name="groupSize" value="<%=groupSize%>"/>
          <jsp:param name="curPage" value="<%=curPage%>"/>
          <jsp:param name="totalCount" value="<%=totalCount%>"/>
@@ -186,6 +232,6 @@ if(true){
     </tr>
   </tfoot>
 </table>
-</form>
+<!-- </form>  -->
 </body>
 </html>
