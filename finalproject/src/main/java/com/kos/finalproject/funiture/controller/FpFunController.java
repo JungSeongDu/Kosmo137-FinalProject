@@ -1,4 +1,6 @@
 package com.kos.finalproject.funiture.controller;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.Cookie;
@@ -19,11 +21,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+
 import com.kos.finalproject.common.CommonUtils;
 import com.kos.finalproject.fp.controller.FpMemController;
 import com.kos.finalproject.fp.service.FpMemService;
+import com.kos.finalproject.fp.vo.FpMemVO;
 import com.kos.finalproject.funiture.service.FpFunService;
 import com.kos.finalproject.funiture.vo.FpFunVO;
+
+import com.oreilly.servlet.MultipartRequest;   // 구
 
 @Controller
 public class FpFunController {
@@ -41,7 +48,7 @@ public class FpFunController {
       return"main/fpLoginForm";
       // http://localhost:8088/finalproject/funiture.h
    }
-		  
+ 
 	
 	//가구조회
     @GetMapping("funiture")
@@ -165,6 +172,120 @@ public class FpFunController {
   		model.addAttribute("sum", sum); // mid 값을 모델에 추가
   		return "funiture/funitureorder";
   	}
+  	
+  	
+  //등록폼
+  	@GetMapping(value="fsellform")
+  	public String Kartorder(@RequestParam(required = false) String mid,HttpServletRequest req, FpFunVO fvo, Model model) {
+  		
+  		logger.info("fsellform 함수 진입 >>> : ");
+  		logger.info("Received mid: " + mid);
+  		
+  		
+  		model.addAttribute("mid", mid); // mid 값을 모델에 추가
+  		
+  		return "funiture/fsellform";
+  	}
+  	
+  	
+  //가구등록
+  	@PostMapping("fsell")
+  	public String fsell(@RequestParam(required = false) String mid,HttpServletRequest req,
+  	                    Model model) {
+  	    logger.info("fsell 함수 진입 >>> : ");
+  	    logger.info("Received mid: " + mid);
+
+  	  // 파일 업로드
+        String filePath = CommonUtils.PRODUCT_IMG_UPLOAD_PATH;
+        int imgfileSize = CommonUtils.PRODUCT_IMG_FILE_SIZE;
+        String encodeType = CommonUtils.PRODUCT_ENCODE;
+
+
+  	    try {
+  	    	
+  	    	MultipartRequest mr = new MultipartRequest(req, filePath, imgfileSize, encodeType); 
+  	        
+  	    	FpFunVO fvo = null;  
+  	         fvo = new FpFunVO(); 
+  	        
+  	         // 입력한 데이터 값 확인
+  	         fvo.setFnum(mr.getParameter("fnum"));
+  	         fvo.setFname(mr.getParameter("fname"));
+  	         fvo.setFprice(mr.getParameter("fprice"));
+  	         fvo.setFmood(mr.getParameter("fmood"));
+  	         fvo.setFfile(mr.getFilesystemName("ffile"));
+
+  	         
+  	        int nCnt = fpFunService.fsell(fvo);
+
+  	        if (nCnt > 0) {
+  	            logger.info("kosBoardInsert nCnt >>> : " + nCnt);
+  	            model.addAttribute("mid", mid); // mid 값을 모델에 추가
+  	            return "funiture/reFunitureKart";
+  	        }
+
+  	    } catch (IOException e) {
+  	        logger.info("파일 업로드 중 에러가 >>> : " + e.getMessage());
+  	    }
+
+  	    return "main/fail";
+  	}
+  	
+  	
+  	
+  //가구 수정 불러오기
+  	@PostMapping(value="updateOne")
+  	public String updateOne(@RequestParam(required = false) String mid, FpFunVO fvo, Model model) {
+  		logger.info("updateOne 함수 진입 >>> : ");
+  		logger.info("Received mid: " + mid);
+  		
+  		
+  		List<FpFunVO> kartListOne = fpFunService.updateOne(fvo);
+  		if(kartListOne.size()>0) {
+  			logger.info("OsKartController listAll.size() >>> : " + kartListOne.size());
+  			model.addAttribute("mid", mid); // mid 값을 모델에 추가
+  			model.addAttribute("kartListOne",kartListOne);
+  			return "funiture/fsellUpdate";
+  		}
+  		return "main/fail";
+  	}
+  	
+  	
+  //가구정보  수정
+	@GetMapping(value="fsellUpdate")
+    public String fsellUpdate(@RequestParam(required = false) String mid, FpFunVO fvo, Model model,HttpServletRequest req) {
+       logger.info("fsellUpdate >>> :");
+       logger.info("fsellUpdate 함수 진입 fvo.getFnum() >>> : " + fvo.getFnum());
+       logger.info("fsellUpdate 함수 진입 fvo.getFname() >>> : " + fvo.getFname());
+       logger.info("Received mid: " + mid);
+ 		
+       int nCnt = fpFunService.fsellUpdate(fvo);
+       
+       if (nCnt > 0) {
+          logger.info("fpFunService nCnt >>> : " + nCnt);
+          model.addAttribute("mid", mid); // mid 값을 모델에 추가
+          return "funiture/reFunitureKart";
+       }
+       return "main/fail";
+    }
+	
+	
+	//가구정보  삭제
+		@GetMapping(value="fsellDelete")
+	    public String fsellDelete(@RequestParam(required = false) String mid, FpFunVO fvo, Model model,HttpServletRequest req) {
+	       logger.info("fsellDelete >>> :");
+	       logger.info("fsellDelete 함수 진입 fvo.getFnum() >>> : " + fvo.getFnum());
+	       
+	       int nCnt = fpFunService.fsellDelete(fvo);
+	       
+	       if (nCnt > 0) {
+	          logger.info("fpFunService nCnt >>> : " + nCnt);
+	          model.addAttribute("mid", mid); // mid 값을 모델에 추가
+	          return "funiture/reFunitureKart";
+	       }
+	       return "main/fail";
+	    }
+  	
   	
   	
 }

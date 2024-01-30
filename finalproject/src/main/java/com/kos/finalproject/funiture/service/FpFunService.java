@@ -15,4 +15,13 @@ public interface FpFunService {
 	public int KartDelete(FpFunVO fvo); //장바구니 한건 삭제 
 	
 	public int KartDeleteArray(ArrayList<FpFunVO> aList); //장바구니 전체,선택 삭제
+	
+	public int fsell(FpFunVO fvo); //제품등록
+	
+	
+	public List<FpFunVO> updateOne(FpFunVO fvo); //가구수정폼
+	
+	public int fsellUpdate(FpFunVO fvo); //가구정보 수정
+	
+	public int fsellDelete(FpFunVO fvo); //가구정보 삭제
 }

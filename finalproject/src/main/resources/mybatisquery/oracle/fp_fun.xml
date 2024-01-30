@@ -71,4 +71,60 @@ SELECT 			A.KNUM 			KNUM
 	</foreach>
 </update>
 
+
+
+<insert id="fsell" parameterType="fpfunvo" >
+ 
+	INSERT INTO FUNITURE_TABLE (FNUM, FNAME, FPRICE, 
+								FMOOD, FFILE, DELETEYN)
+					VALUES(
+            					FUNITURE_SEQ.NEXTVAL, 
+            					#{fname}, 
+            					#{fprice}, 
+            					#{fmood}, 
+            					CONCAT('resources/include/img/', #{ffile}),  
+            					'Y'
+            					)
+</insert>
+
+
+
+
+
+<select id = "updateOne" parameterType = "fpfunvo" resultType="fpfunvo">
+
+SELECT 			A.FNUM 			FNUM
+		       ,A.FNAME 		FNAME
+		       ,A.FMOOD			FMOOD
+		       ,A.FPRICE 		FPRICE
+		       ,A.FFILE			FFILE
+		       ,A.DELETEYN 		DELETEYN
+		       	  
+		FROM 	FUNITURE_TABLE A
+		WHERE 	A.DELETEYN = 'Y' AND A.FNUM = #{fnum}
+    <!--AND 	A.KMNUM = #{kmnum}--> 	
+
+	
+</select>
+
+
+<update id="fsellUpdate" parameterType="fpfunvo" >
+    UPDATE FUNITURE_TABLE 
+    SET
+        FNAME = #{fname},
+        FPRICE = #{fprice},
+        FMOOD = #{fmood}
+    WHERE FNUM = #{fnum}
+</update>
+
+
+
+<update id="fsellDelete" parameterType="fpfunvo" >
+    UPDATE FUNITURE_TABLE 
+    SET
+        DELETEYN = 'N'
+    WHERE FNUM = #{fnum}
+</update>
+
+
 </mapper> 

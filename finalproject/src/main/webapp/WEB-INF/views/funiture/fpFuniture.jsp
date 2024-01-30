@@ -70,6 +70,15 @@
          //location.href="fpLoginForm.h";
     	  window.location.href = "http://192.168.0.2:5011/success/" + midValue;
       });
+	   
+	   
+    //재품등록
+      $(document).on('click','#fsellform',function(){
+         //location.href="fpLoginForm.h";
+    	 location.href = "fsellform.h?mid=" + midValue;
+      });
+	   
+	   
     //장바구니 등록
       $(document).on('click','#selectone',function(){
     	  $('#kart').attr({
@@ -79,6 +88,19 @@
   		}).submit();
     	  alert("장바구니 등록 완료")
       });
+    
+    
+    //제품수정
+      $(document).on('click','#updateOne',function(){
+    	  $('#kart').attr({
+  			'action' : "updateOne.h?mid=" + midValue,
+  			'method' : 'POST',
+  			'enctype' : 'application/x-www-form-urlencoded'
+  		}).submit();
+    	 
+      });
+    
+    
     //장바구니 전체 조회
       $(document).on('click','#full',function(){
          //location.href="kartSelectAll.h";
@@ -109,7 +131,8 @@ for(int i=0; i<nCnt; i++){
 <tbody>
 <form name="kart" id="kart">
 <tr>
-  <input type="hidden" name="mid" id="mid" value="<%= midValue %>">
+  
+  
   <td style="width: 200px;"><img src="<%= fvo.getFfile() %>" alt="이미지" style="max-width: 100%; height: auto;"></td>	
 	
   <td colspan='10' style="width: 100px;"><span style="font-size: 20px;">
@@ -127,6 +150,7 @@ for(int i=0; i<nCnt; i++){
     가격:  <%= fvo.getFprice() %>원<br><br>
     
   <input type="button" name="selectone" id="selectone" value="장바구니" style="width: 100px; height: 40px;">
+  <input type="button" name="updateOne" id="updateOne" value="제품정보 수정" style="width: 100px; height: 40px;">
 </tr>
 </form>
 <%
@@ -155,7 +179,9 @@ if(true){
     <tr>
       <td colspan="10" align='right'>
         <input type="button" name="homeButton" id="homeButton" value="메인페이지" style="width: 100px; height: 40px;">
+        <input type="button" name="fsellform" id="fsellform" value="제품등록" style="width: 100px; height: 40px;">
         <input type="button" name="full" id="full" value="바구니 조회" style="width: 100px; height: 40px;">
+        
       </td>
     </tr>
   </tfoot>

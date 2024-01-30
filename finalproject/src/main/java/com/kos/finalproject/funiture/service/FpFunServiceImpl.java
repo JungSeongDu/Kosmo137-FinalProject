@@ -60,4 +60,39 @@ Logger logger = LogManager.getLogger(FpFunServiceImpl.class);
 			logger.info("osKartDeleteArray 함수 진입 >>> : ");		
 			return fpFunDAO.KartDeleteArray(aList);
 		}
+		
+		
+		@Override
+		public int fsell(FpFunVO fvo) {
+			//TODO Auto-generated method stub
+			logger.info("kosBoardInsert 함수 진입 >>> : ");
+			return fpFunDAO.fsell(fvo);
+			
+		}
+		
+		
+		
+		//가구수정
+		@Override
+		public List<FpFunVO> updateOne(FpFunVO fvo){
+			logger.info("FpFunService.FpFunVO() 진입 >>> : ");
+			return fpFunDAO.updateOne(fvo);
+		}
+		
+		
+		
+		//가구정보 수정
+		@Override
+		public int fsellUpdate(FpFunVO fvo){
+			logger.info("FpFunService.FpFunVO() 진입 >>> : ");
+			return fpFunDAO.fsellUpdate(fvo);
+		}
+		
+		
+		//가구정보 삭제
+		@Override
+		public int fsellDelete(FpFunVO fvo){
+			logger.info("FpFunService.FpFunVO() 진입 >>> : ");
+			return fpFunDAO.fsellDelete(fvo);
+		}
 }
