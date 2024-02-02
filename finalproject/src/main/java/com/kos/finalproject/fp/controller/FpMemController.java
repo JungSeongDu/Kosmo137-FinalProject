@@ -18,6 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import com.kos.finalproject.fp.vo.FpMemVO;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+
 import com.kos.finalproject.fp.service.FpMemService;
 
 @Controller
@@ -27,6 +31,10 @@ public class FpMemController{
 	   @Autowired
 	   private FpMemService fpMemService;
 	
+	   //레디스
+	   @Autowired
+	   private JedisPool jedisPool;
+
 	
 	//로그인폼
 	   @GetMapping(value= "fpLoginForm")
@@ -73,7 +81,23 @@ public class FpMemController{
 		      String mid = fvo.getMid();
 		      String mpw = fvo.getMpw();	
 		  
+		      //HttpSession session = request.getSession(true);      // HttpServletRequest에서 세션을 가져오거나 새로 생성
+		      //String sessionId = session.getMid();       // 세션에서 고유한 세션 아이디 가져오기
+		      
 	        List<FpMemVO> listLogin = fpMemService.loginCheck(fvo);
+	        
+	        /*
+	        try (Jedis jedis = jedisPool.getResource()) {
+                
+                // Redis에 데이터 저장
+                  jedis.set( sessionId, adminyn);
+                  // Redis 만료 시간 설정 (3600=1시간)
+                  jedis.expire(sessionId, 3600*24);
+                  logger.info("jedis.set >>> : ");
+              }
+              */
+
+	        
 	        if (listLogin.size() == 1) {
 	            model.addAttribute("listLogin", listLogin);
 	            return "redirect:http://192.168.0.2:5011/success/"+mid;
