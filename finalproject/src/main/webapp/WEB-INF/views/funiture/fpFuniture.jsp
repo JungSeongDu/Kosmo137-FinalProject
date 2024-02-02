@@ -181,6 +181,11 @@ for (int i = 0; i < nCnt; i++) {
 
       <td colspan='10' style="width: 100px;"><span style="font-size: 20px;">
 
+
+		<input type="hidden" name="fseller" id="fseller" value="<%= fvo.getFseller() %>">
+	 판매자 : <%= fvo.getFseller() %><br><br>
+
+
         <input type="hidden" name="fnum" id="fnum" value="<%= fvo.getFnum() %>">
         번호 : <%= fvo.getFnum() %><br><br>
 
@@ -192,9 +197,15 @@ for (int i = 0; i < nCnt; i++) {
 
         <input type="hidden" name="fprice" id="fprice" value="<%= fvo.getFprice() %>">
         가격: <%= fvo.getFprice() %>원<br><br>
+        
+        <input type="hidden" name="fupdatedate" id="fupdatedate" value="<%= fvo.getFinsertdate() %>">
+       등록일: <%= fvo.getFinsertdate() %><br><br>
+        
+        <input type="hidden" name="fupdatedate" id="fupdatedate" value="<%= fvo.getFupdatedate() %>">
+        최종 수정일: <%= fvo.getFupdatedate() %><br><br>
 
         <input type="button" name="selectone" id="selectone<%= i %>" value="장바구니" style="width: 100px; height: 40px;">
-        <input type="button" name="updateOne" id="updateOne<%= i %>" value="제품정보 수정/삭제" style="width: 100px; height: 40px;">
+        <input type="button" name="updateOne" id="updateOne<%= i %>" value="정보 수정/삭제" style="width: 100px; height: 40px;">
       </td>
     </tr>
   </tbody>

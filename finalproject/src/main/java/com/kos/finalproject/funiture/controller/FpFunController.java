@@ -209,6 +209,7 @@ public class FpFunController {
   	         fvo = new FpFunVO(); 
   	        
   	         // 입력한 데이터 값 확인
+  	         fvo.setFseller(mid);
   	         fvo.setFnum(mr.getParameter("fnum"));
   	         fvo.setFname(mr.getParameter("fname"));
   	         fvo.setFprice(mr.getParameter("fprice"));

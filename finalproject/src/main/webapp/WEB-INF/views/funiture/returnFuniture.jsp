@@ -12,7 +12,7 @@ String midValue = (String)request.getAttribute("mid");
 </head>
 <body>
 <script>
-	location.href = "funiture.h?mid=" + <%= midValue %>;
+	location.href = "funiture.h?mid=" + "<%= midValue %>";
 </script>
 <!-- <a href="osLoginForm">aa</a> -->
 </body>

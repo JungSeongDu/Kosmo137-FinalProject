@@ -104,6 +104,11 @@ if(obj == null){
 	
 	<input type="hidden" name="mid" id="mid" value="<%= midValue %>">
 	
+	<td>판매자 아이디</td>
+	<input type="hidden" name="fseller" id="fseller" value="<%= fvo.getFseller() %>">
+	<td><%= fvo.getFseller() %></td>
+	
+	
 	<tr>
 		<td>번호</td>
 		 <input type="hidden" name="fnum" id="fnum" size="20" value="<%= fvo.getFnum() %>">

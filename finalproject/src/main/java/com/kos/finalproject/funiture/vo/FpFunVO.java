@@ -8,6 +8,12 @@ public class FpFunVO {
 	String fprice;
 	String fmood;
 	String deletyn;
+	
+	String fseller;
+	String finsertdate;
+	String fupdatedate;
+	
+	
 	String ffile;
 	
 	String knum;
@@ -29,6 +35,7 @@ public class FpFunVO {
 	 
 	 
 	 public FpFunVO(String fnum, String fname,String fprice, String fmood,String deleteyn,
+			 		String fseller, String finsertdate, String fupdatedate,
 			 		String pageSize,String groupSize,String curPage, String totalCount, String ffile, 
 			 		String knum, String kname, String kprice, String kmood, String kdeletyn) {
 			super();
@@ -39,6 +46,11 @@ public class FpFunVO {
 			this.fmood = fmood;
 			this.deletyn = deletyn;
 			this.ffile = ffile;
+			
+			this.fseller = fseller;
+			this.finsertdate = finsertdate;
+			this.fupdatedate = fupdatedate;
+			
 			
 			this.pageSize = pageSize;
 			this.groupSize = groupSize;
@@ -202,6 +214,36 @@ public class FpFunVO {
 
 	public void setKdeletyn(String kdeletyn) {
 		this.kdeletyn = kdeletyn;
+	}
+
+
+	public String getFseller() {
+		return fseller;
+	}
+
+
+	public void setFseller(String fseller) {
+		this.fseller = fseller;
+	}
+
+
+	public String getFinsertdate() {
+		return finsertdate;
+	}
+
+
+	public void setFinsertdate(String finsertdate) {
+		this.finsertdate = finsertdate;
+	}
+
+
+	public String getFupdatedate() {
+		return fupdatedate;
+	}
+
+
+	public void setFupdatedate(String fupdatedate) {
+		this.fupdatedate = fupdatedate;
 	}
 	 
 }

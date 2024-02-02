@@ -7,10 +7,13 @@
 <select id="funiture" resultType="fpfunvo" parameterType="fpfunvo">
    SELECT * FROM (
       SELECT    A.FNUM       		FNUM
+      		   ,A.FSELLER			FSELLER
                ,A.FNAME    			FNAME
                ,A.FPRICE			FPRICE
                ,A.FMOOD				FMOOD
                ,A.FFILE				FFILE
+               ,A.FINSERTDATE		FINSERTDATE
+               ,A.FUPDATEDATE		FUPDATEDATE
                ,A.DELETEYN      	DELETEYN              
              <!--  ? : 페이지 사이즈 : pageSize  -->
              ,CEIL(ROW_NUMBER() OVER(ORDER BY A.FNUM)/ #{pageSize} ) pageSize      
@@ -75,14 +78,17 @@ SELECT 			A.KNUM 			KNUM
 
 <insert id="fsell" parameterType="fpfunvo" >
  
-	INSERT INTO FUNITURE_TABLE (FNUM, FNAME, FPRICE, 
-								FMOOD, FFILE, DELETEYN)
+	INSERT INTO FUNITURE_TABLE (FNUM, FSELLER ,FNAME, FPRICE, 
+								FMOOD, FFILE, FINSERTDATE, FUPDATEDATE, DELETEYN)
 					VALUES(
             					FUNITURE_SEQ.NEXTVAL, 
+            					#{fseller},
             					#{fname}, 
             					#{fprice}, 
             					#{fmood}, 
             					CONCAT('resources/include/img/', #{ffile}),  
+            					SYSDATE,
+            					SYSDATE,
             					'Y'
             					)
 </insert>
@@ -94,6 +100,7 @@ SELECT 			A.KNUM 			KNUM
 <select id = "updateOne" parameterType = "fpfunvo" resultType="fpfunvo">
 
 SELECT 			A.FNUM 			FNUM
+			   ,A.FSELLER	    FSELLER
 		       ,A.FNAME 		FNAME
 		       ,A.FMOOD			FMOOD
 		       ,A.FPRICE 		FPRICE
@@ -110,9 +117,11 @@ SELECT 			A.FNUM 			FNUM
 <update id="fsellUpdate" parameterType="fpfunvo" >
     UPDATE FUNITURE_TABLE 
     SET
+    	FSELLER = #{fseller},
         FNAME = #{fname},
         FPRICE = #{fprice},
-        FMOOD = #{fmood}
+        FMOOD = #{fmood},
+        FUPDATEDATE = SYSDATE
     WHERE FNUM = #{fnum}
 </update>
 

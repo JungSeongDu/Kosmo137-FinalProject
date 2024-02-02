@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ page import="com.kos.finalproject.funiture.vo.FpFunVO" %>
 <%
 
 //mid 값 가져오기
@@ -49,6 +49,13 @@ String midValue = (String)request.getAttribute("mid");
 	<tr>
 		<td colspan="2" align="center">제품 등록</td>				
 	</tr>
+	
+	<tr>
+		<td>판매자 아이디</td>
+		<input type="hidden" name="fseller" id="fseller" value="<%= midValue %>">
+		<td><%=  midValue %></td>
+	</tr>
+	
 	<tr>
 		<td>번호</td>
 		<td><input type="text" name="fnum" id="fnum" size="20" readonly></td>
