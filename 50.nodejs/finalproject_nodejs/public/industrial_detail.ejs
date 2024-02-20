@@ -1,0 +1,108 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial 컨셉이란?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0eae3;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 1020px;
+        }
+        .box {
+            width: 500px;
+            height: 700px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #6c757d;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button-container a:hover {
+            background-color: #5a6268;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .reinspection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box description">
+            <h1>인더스트리얼 스타일이란?</h1>
+            <p>
+                인더스트리얼 인테리어 컨셉은 원시적이고 거친 매력을 전면에 내세우는 디자인 스타일로, 공장이나 창고와 같은 산업적 공간에서 영감을 받아 탄생했습니다. 이 스타일은 노출된 구조적 요소와 미니멀리즘, 기능성을 중시하며, 대담한 구조적 요소와 빈티지 혹은 재활용 가구를 통해 독특한 분위기를 연출합니다. 모던함과 역사적 매력의 결합을 통해, 도시적이면서도 아늑한 생활 공간을 조성합니다.
+            </p>
+            <p>
+                주로 사용되는 소재들은 노출된 벽돌, 콘크리트, 금속, 목재, 유리 등으로, 각각의 질감과 성질이 인테리어에 특별한 느낌을 부여합니다. 노출된 벽돌은 역사적인 매력과 따뜻함을, 콘크리트는 모던하고 강인한 인상을 줍니다. 금속은 철, 구리, 스테인리스 스틸을 활용해 산업적이고 냉담한 분위기를, 목재는 재활용이나 미완성 형태로 자연스러움과 따뜻함을 더하며, 유리는 공간을 밝고 개방적으로 만들어 현대적인 느낌을 강조합니다.
+            </p>
+            <p>
+                이러한 소재들의 조화는 인더스트리얼 인테리어만의 시각적 대비와 깊이를 만들어냅니다. 거친 텍스처와 원시적인 소재의 사용은 도시적인 모던함 속에 역사적인 매력과 아늑한 분위기를 동시에 구현하며, 공간에 독특하고 매력적인 분위기를 부여합니다. 인더스트리얼 인테리어는 이러한 다양한 요소들을 통해 생활 공간에 강렬하면서도 세련된 느낌을 제공하며, 사용자가 개성 있고 기능적인 공간을 경험할 수 있게 합니다.
+            </p>
+        </div>
+        <div class="box image-box">
+            <!-- 이미지 경로를 확인하고 필요에 따라 수정하세요. -->
+            <img src="http://localhost:3000/imgs/ind.jpg" alt="인더스트리얼 인테리어 이미지">
+        </div>
+    </div>
+    <div class="reinspection-container">
+        <h2>인테리어 재검사</h2>
+        <div class="button-container">
+            <a href="http://192.168.0.8:5011/interior/<%= mid%>">재검사</a>
+            <a href="http://192.168.0.8:5011/success/<%= mid%>">메인페이지</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial 컨셉이란?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0eae3;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 1020px;
+        }
+        .box {
+            width: 500px;
+            height: 700px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #fda5f9;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button-container a:hover {
+            background-color: #5a6268;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .reinspection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box description">
+            <h1> 스타일이란?</h1>
+            <p>
+                
+                유니크 인테리어는 개성과 창의성을 중심으로 한 디자인 스타일입니다. 이 컨셉은 전통적인 디자인 규칙을 벗어나 개인의 취향과 스타일을 공간에 반영하는 것을 목표로 합니다. 유니크 인테리어는 예상치 못한 조합, 대담한 색상 사용, 독특한 가구와 액세서리를 통해 공간에 생동감과 개성을 더합니다.
+            </p>
+            <p>
+                이 스타일에서는 다양한 소재와 텍스처를 사용하여 공간에 깊이와 풍부함을 더합니다. 복합 재료, 이색적인 패브릭, 수제 아이템, 예술 작품 등이 포함될 수 있으며, 이들은 고유의 질감과 색감으로 공간에 독특한 분위기를 창출합니다. 유니크 인테리어는 표준화된 디자인 틀에서 벗어나 다채로운 재료의 조화를 탐구합니다.
+            </p>
+            <p>
+                유니크 인테리어를 통해 얻을 수 있는 심미적 효과는 공간마다 독특한 이야기와 캐릭터를 담는 것입니다. 이는 방문자에게 강한 인상을 남기며, 공간 사용자에게는 창의력과 개성을 표현하는 기회를 제공합니다. 유니크 인테리어는 단순히 미적인 측면을 넘어, 공간에 개인적인 가치와 예술성을 불어넣는 방법입니다.
+            </p>
+        </div>
+        <div class="box image-box">
+            <!-- 이미지 경로를 확인하고 필요에 따라 수정하세요. -->
+            <img src="http://localhost:3000/imgs/uni.jpg" alt="이미지">
+        </div>
+    </div>
+    <div class="reinspection-container">
+        <h2>인테리어 재검사</h2>
+        <div class="button-container">
+            <a href="http://192.168.0.8:5011/interior/<%= mid%>">재검사</a>
+            <a href="http://192.168.0.8:5011/success/<%= mid%>">메인페이지</a>
+        </div>
+    </div>
+</body>
+</html>

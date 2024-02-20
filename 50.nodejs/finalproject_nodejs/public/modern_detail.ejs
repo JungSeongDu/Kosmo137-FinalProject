@@ -1,0 +1,108 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial 컨셉이란?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0eae3;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 1020px;
+        }
+        .box {
+            width: 500px;
+            height: 700px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #6c757d;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button-container a:hover {
+            background-color: #5a6268;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .reinspection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box description">
+            <h1> 스타일이란?</h1>
+            <p>
+                모던 인테리어는 깔끔한 선, 단순함, 기능성을 중심으로 한 디자인 스타일입니다. 이 컨셉은 20세기 초반에 등장해 현대적 생활 공간을 구현하는 데 중점을 두고 있습니다. 모던 인테리어는 불필요한 장식을 최소화하고, 공간의 개방성과 실용성을 강조합니다.
+            </p>
+            <p>
+                이 스타일에서 자주 사용되는 소재는 금속, 유리, 콘크리트, 목재 등입니다. 이들 재료는 자연스러운 텍스처와 세련된 느낌을 공간에 제공하며, 간결하고 현대적인 디자인을 가능하게 합니다. 금속과 유리는 깨끗하고 매끄러운 표면으로 현대적인 느낌을, 목재와 콘크리트는 따뜻함과 질감을 더해줍니다.
+            </p>
+            <p>
+                모던 인테리어를 통해 얻을 수 있는 심미적 효과는 밝고 넓은 공간감, 질서와 균형이 잘 유지된 환경입니다. 이러한 디자인은 생활 공간에 평온과 정돈된 느낌을 부여하며, 동시에 기능적이고 실용적인 면모를 갖추게 합니다. 모던 인테리어는 현대 생활의 단순함과 효율성을 추구하는 이들에게 이상적인 선택입니다.
+            </p>
+        </div>
+        <div class="box image-box">
+            <!-- 이미지 경로를 확인하고 필요에 따라 수정하세요. -->
+            <img src="http://localhost:3000/imgs/mdrn.jpg" alt="이미지">
+        </div>
+    </div>
+    <div class="reinspection-container">
+        <h2>인테리어 재검사</h2>
+        <div class="button-container">
+            <a href="http://192.168.0.8:5011/interior/<%= mid%>">재검사</a>
+            <a href="http://192.168.0.8:5011/success/<%= mid%>">메인페이지</a>
+        </div>
+    </div>
+</body>
+</html>

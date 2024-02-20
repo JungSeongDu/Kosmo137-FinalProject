@@ -1,0 +1,109 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial 컨셉이란?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0eae3;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 1020px;
+        }
+        .box {
+            width: 500px;
+            height: 700px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #6c757d;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button-container a:hover {
+            background-color: #5a6268;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .reinspection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box description">
+            <h1> 스타일이란?</h1>
+            <p>
+             
+러블리/로멘틱 인테리어 컨셉은 부드러움, 따스함, 그리고 사랑스러움을 주제로 한 디자인 스타일입니다. 이 컨셉은 부드러운 색상 팔레트, 섬세한 패턴, 그리고 우아한 디테일을 강조하여 공간에 따뜻하고 환영하는 분위기를 조성합니다. 로멘틱 인테리어는 편안함과 아늑함을 추구하며, 개인적인 소품과 장식을 통해 개성을 표현합니다.   
+            </p>
+            <p>
+                이 스타일에서 주로 사용되는 소재는 부드러운 패브릭, 레이스, 벨벳, 그리고 목재 등입니다. 이러한 재료들은 공간에 섬세하고 우아한 텍스처를 더하며, 페이스트리 색상이나 화사한 플로럴 패턴은 사랑스러움을 강조합니다. 또한, 촛불, 장식용 조명, 미러 등은 공간에 부드러운 광채와 반짝임을 추가합니다.                
+            </p>
+            <p>
+                러블리/로멘틱 인테리어를 통해 얻을 수 있는 심미적 효과는 공간에서의 평화롭고 사랑 가득한 분위기입니다. 이 컨셉은 마치 동화 속 세계나 순수한 사랑의 이야기를 연상시키며, 공간 사용자에게 안락함과 행복감을 선사합니다. 로멘틱 인테리어는 일상에서 벗어나 로맨스와 꿈이 가득한 휴식처를 만들어냅니다.                
+            </p>
+        </div>
+        <div class="box image-box">
+            <!-- 이미지 경로를 확인하고 필요에 따라 수정하세요. -->
+            <img src="http://localhost:3000/imgs/lv.jpg" alt="이미지">
+        </div>
+    </div>
+    <div class="reinspection-container">
+        <h2>인테리어 재검사</h2>
+        <div class="button-container">
+            <a href="http://192.168.0.8:5011/interior/<%= mid%>">재검사</a>
+            <a href="http://192.168.0.8:5011/success/<%= mid%>">메인페이지</a>
+        </div>
+    </div>
+</body>
+</html>

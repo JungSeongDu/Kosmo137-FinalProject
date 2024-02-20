@@ -1,0 +1,108 @@
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial 컨셉이란?</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0eae3;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            width: 1020px;
+        }
+        .box {
+            width: 500px;
+            height: 700px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .image-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #6c757d;
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        .button-container a:hover {
+            background-color: #5a6268;
+            box-shadow: 0 0 8px rgba(255,255,255,0.5);
+        }
+        .reinspection-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 20px;
+        }
+        h2 {
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box description">
+            <h1> 스타일이란?</h1>
+            <p>
+                프랜치/프로방스 인테리어는 프랑스 남부 지방의 자연스러움과 우아함을 반영한 디자인 스타일입니다. 이 컨셉은 화사한 색상, 자연 소재, 그리고 빈티지한 가구를 통해 편안하고 소박한 분위기를 조성합니다. 프로방스 스타일은 시골의 따스함과 전통적인 프랑스의 우아함을 결합합니다.    
+            </p>
+            <p>
+                주로 사용되는 소재는 목재, 철, 도자기, 리넨과 같은 자연에서 온 재료들입니다. 이들은 공간에 따뜻하고 친근한 느낌을 주며, 연한 페이스트리 색상과 플로럴 패턴은 자연스러운 아름다움을 강조합니다. 질감이 풍부한 패브릭과 손으로 칠한 가구는 공간에 개성을 더합니다.
+            </p>
+            <p>
+                프랜치/프로방스 인테리어로 꾸며진 공간은 마치 프랑스 시골집에 온 듯한 포근하고 여유로운 느낌을 선사합니다. 이 스타일은 자연과 가까움, 생활의 단순함을 추구하며, 거주자에게는 평온함과 안식의 공간을 제공합니다.
+            </p>
+        </div>
+        <div class="box image-box">
+            <!-- 이미지 경로를 확인하고 필요에 따라 수정하세요. -->
+            <img src="http://localhost:3000/imgs/pr.jpeg" alt="이미지">
+        </div>
+    </div>
+    <div class="reinspection-container">
+        <h2>인테리어 재검사</h2>
+        <div class="button-container">
+            <a href="http://192.168.0.8:5011/interior/<%= mid%>">재검사</a>
+            <a href="http://192.168.0.8:5011/success/<%= mid%>">메인페이지</a>
+        </div>
+    </div>
+</body>
+</html>
