@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이미지 분석 결과</title>
+    <style>
+        .random-image, .origin-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .image-container {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            margin: 10px;
+            display: inline-block;
+        }
+        .images-row {
+            white-space: nowrap;
+            overflow-x: auto;
+            margin: 10px 0;
+        }
+        .line {
+            height: 5px;
+            width: 980px;
+            background-color: navy;
+            margin: 20px 0;
+        }
+        form {
+            margin: 10px;
+            display: inline;
+            height: 20px;
+            float: left;
+        }
+        .table-align-left {
+            margin-left: 0;
+            text-align: left;
+        }
+        /* 공통 버튼 스타일 */
+        .custom-button {
+            background-color: #243682;
+            border: 2px solid ivory;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 500px; 
+        }
+        .custom-button:hover {
+            background-color: #1b2e5f;
+        }
+    </style>
+</head>
+<body>
+    <h2>"{{ mid }}"님의 방 분위기는  {{ predicted_class_cnn }} 입니다.</h2>
+    <h3>당신의 방 이미지</h3>
+    <div class="table-align-left">
+        <table>
+            <tr>
+                <td>
+                    <div class="image-container">
+                        <img src="{{ image_path_origin }}" alt="인식 이미지" class="origin-image">
+                    </div>
+                </td>
+                <td>
+                    <h2>There are these things in your room</h2>
+                    <ul>
+                        {% for obj in predicted_objects %}
+                            <li>{{ obj }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+    <div class="line table-align-left"></div>
+
+    <div class="table-align-left">
+        <table>
+            <tr>
+                <td>
+                    <h1>Recommend Interior >>>> {{ predicted_class_cnn }}</h1>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <h2>Explain Mood</h2>
+                    <div align="right">
+                        <form action="/detail/{{ predicted_class_cnn }}/{{mid}}" method="get">
+                            <button class="custom-button" type="submit">디테일</button>
+                        </form>
+                        <form action="/interior/{{ mid }}" method="get">
+                            <button class="custom-button" type="submit">인테리어 검사</button>
+                        </form>
+                        <form action="/success/{{ mid }}" method="get">
+                            <button class="custom-button" type="submit">돌아가기</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="images-row">
+            {% for img_path in selected_images %}
+                <div class="image-container">
+                    <img src="{{ img_path }}" alt="랜덤 이미지" class="random-image">
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
